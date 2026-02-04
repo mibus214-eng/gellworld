@@ -56,9 +56,23 @@
 </head>
 <body>
 
-<header>GELLWORLD</header>
+<header>GELLWORLD<br><span style="font-size:16px;">IP: <b id="ip">GELLWORLDS.aternos.me</b></span></header>
 
 <div class="container">
+  <h2>🌐 Статус сервера</h2>
+  <p><b>IP сервера:</b> GELLWORLDS.aternos.me</p>
+  <p><b>Онлайн сейчас:</b> <span id="online">загрузка...</span></p>
+  <script>
+    fetch('https://api.mcsrvstat.us/2/GELLWORLDS.aternos.me')
+      .then(r => r.json())
+      .then(d => {
+        document.getElementById('online').innerText = d.players ? d.players.online + ' игроков' : '0 игроков';
+      })
+      .catch(() => {
+        document.getElementById('online').innerText = 'недоступно';
+      });
+  </script>
+
   <h2>📜 Правила сервера</h2>
   <ul>
     <li class="ban">Читы — <b>бан на 10 дней</b></li>
